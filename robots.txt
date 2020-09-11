@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: https://jogendra.github.io/sitemap.xml
+Sitemap: https://riturajsingh878.github.io/sitemap.xml
