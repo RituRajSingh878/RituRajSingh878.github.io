@@ -1,0 +1,155 @@
+.cards {
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    -moz-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 0;
+}
+
+.cards .card {
+  width: 100%;
+  margin: 2% 0;
+}
+
+.card {
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+}
+
+.cards .card-img-top {
+    width: auto;
+}
+
+.cards .card-body {
+    padding: 1rem;
+}
+
+.cards .card-title {
+    margin-bottom: .75rem;
+}
+
+.card-body .card-language {
+  font-style: italic;
+}
+
+@media screen and (min-width: 768px) {
+
+  .cards {
+    width: 120%;
+    margin: 0 -10%;
+  }
+
+  .cards .card {
+    width: 44%;
+    margin: 3%;
+  }
+
+}
+
+
+ul.actions {
+    cursor: default;
+    list-style: none;
+    padding-left: 1rem;
+    margin: 0;
+}
+
+ul.actions li {
+    display: inline-block;
+    padding: 0 1em 0 0;
+    vertical-align: middle;
+}
+
+.not-available {
+  color: red;
+}
+
+.footer-hr {
+    display: inline-block;
+    width: 50%;
+    border-bottom: 1px solid #666;
+}
+
+.site-footer .credit {
+  font-size: 0.6em;
+}
+
+@media screen and (min-width: 768px) {
+  .site-footer .credit {
+    font-size: 0.8em;
+  }
+}
+
+.resume-footer {
+  color: #666;
+  /* border-left: 4px solid #999;
+  padding-left: 2%; */
+  margin-bottom: 2%;
+}
+.contrib-number {
+  font-weight: 500;
+}
+
+.site-header-container .has-cover img {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  border: 3px solid white;
+}
+
+.home a, .navigation a, .site-footer a {
+  color: #333;
+}
+
+.hljs, .hljs-tag, .css .hljs-rule, .css .hljs-value, .aspectj .hljs-function, .css .hljs-function .hljs-preprocessor, .hljs-pragma {
+  color: #444444;
+}
+
+.hljs-built_in {
+ color: currentColor;
+}
+
+.hljs {
+  background-color: #f6f8fa;
+}
+
+.hljs-pseudo {
+  color: blue;
+}
+
+.hljs-string {
+  color: #c71585;
+}
+
+.hljs-tag .hljs-value, .hljs-code, .hljs-title, .css .hljs-class, .hljs-class .hljs-title:last-child {
+  color: green;
+}
+
+code {
+  background-color: #f6f8fa;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+}
+
+code.language-plain {
+  width: 100%;
+  padding: 10px;
+  overflow-y: scroll;
+}
+
+.talks {
+  border: 1px solid #666;
+  padding: 2%;
+  border-radius: 8px;
+}
+
+.talks-hr {
+  margin-top: 0;
+}
