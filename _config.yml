@@ -1,22 +1,22 @@
 
 # Site settings
-title: Jogendra Kumar
-name: Jogendra Kumar
-subtitle: Learnings Software Engineering and Doing Open Source Everyday!
-email: jogendrafx@gmail.com
+title: Ritu Raj Singh
+name: Ritu Raj Singh
+subtitle: Learnings machine learning and Doing Open Source Everyday!
+email: rituraj.singh.mat17@itbhu.ac.in
 description: >
   A personal website about me and technical things I find useful.
 baseurl: ""
-url: "https://jogendra.github.io/"
-twitter_username: jogendrafx
-github_username:  jogendra
-disqus_baseurl: "https://jogendra.github.io/"
-disqus_shortname: https-jogendra-github-io
+url: "https://RituRajSingh878.github.io/"
+twitter_username: RituRajSingh878
+github_username:  RituRajSingh878
+disqus_baseurl: "https://RituRajSingh878.github.io/"
+disqus_shortname: https-RituRajSingh878-github-io
 permalink: :title
 cover: "/assets/page-cover.png"
-logo: "/assets/jog-logo.png"
+logo: "/assets/pf-logo.png"
 head: "/assets/head-cover.jpg"
-ga_tracking_id: "UA-108089911-1"
+ga_tracking_id: ""
 
 # Build settings
 markdown: kramdown
@@ -29,7 +29,7 @@ defaults:
     scope:
       path: ""
     values:
-      author: "Jogendra Kumar"
+      author: "Ritu Raj Singh"
 
 
 # External gems
@@ -65,8 +65,8 @@ collections:
 social:
   - name: Twitter
     icon: twitter
-    username: jogendrafx
-    url: https://twitter.com/jogendrafx
+    username: RituRajSingh878
+    url: https://twitter.com/RituRajSingh878
     desc: Follow me on Twitter
     share: true
 
@@ -79,15 +79,15 @@ social:
 
   - name: GitHub
     icon: github
-    username: jogendra
-    url: https://github.com/jogendra
+    username: RituRajSingh878
+    url: https://github.com/RituRajSingh878
     desc: Fork me on GitHub
     share: false
 
   - name: LinkedIn
     icon: linkedin
-    username: Jogendra Kumar
-    url: https://www.linkedin.com/in/jogendrasingh24/
+    username: Ritu Raj Singh
+    url: https://www.linkedin.com/in/ritu-raj-singh-786aa7160
     desc: Connect with me on LinkedIn
     share: true
 
@@ -186,6 +186,6 @@ protocols:
 
     twitter_image: "/assets/head-cover.jpg"
 
-    os_repo: "https://github.com/jogendra/jogendra.github.io"
+    os_repo: "https://github.com/RituRajSingh878/RituRajSingh878.github.io"
     os_rcs_type: "git"
-    os_src: "git@github.com:jogendra.github.io.git"
+    os_src: "git@github.com:RituRajSingh878.github.io.git"
