@@ -1,3 +1,4 @@
+<!---
 ---
 layout: post
 title: Changing My GitHub Username
@@ -49,3 +50,5 @@ Find me on GitHub with my new username here:
 [https://github.com/jogendra](https://github.com/jogendra)
 
 If you ever want to change your GitHub username, [this post](https://nikhita.github.io/changing-my-github-username) by [Nikhita](https://github.com/nikhita) is very helpful. In fact, I was inspired by this post!
+--!>
+
