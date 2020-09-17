@@ -1,10 +1,10 @@
 ---
 layout: page
-title: Talks
-permalink: /talks/
+title: Talks/Interviews
+permalink: /talks-interviews/
 ---
 <br>
-<div align="center"> A list of talks I have presented at conferences/summit and meetups/workshop. </div>
+<div align="center"> A list of talks/interviews I have given at conferences/companies. </div>
 
 <div>
 {% for talks in site.talks reversed %}

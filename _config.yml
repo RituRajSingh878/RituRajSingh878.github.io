@@ -186,6 +186,6 @@ protocols:
 
     twitter_image: "/assets/head-cover.jpg"
 
-    os_repo: "https://github.com/RituRajSingh878/RituRajSingh878.github.io"
+    os_repo: "https://github.com/RituRajSingh878.github.io"
     os_rcs_type: "git"
     os_src: "git@github.com:RituRajSingh878.github.io.git"
