@@ -84,7 +84,7 @@ permalink: /talks-interviews/
           {% else %}
             <a href="{{ talks.article }}">
           {% endif %}
-          Article</a>
+          Interview-Experience</a>
         </span>
         &nbsp; &nbsp;
       {% endif %}
