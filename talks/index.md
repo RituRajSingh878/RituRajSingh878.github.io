@@ -77,11 +77,16 @@ permalink: /talks-interviews/
       {% endif %}
 
       {% if talks.article %}
-        &nbsp; &nbsp;
         <span class="talks-resource">
-          <i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;&nbsp;
-          <a href="{{ talks.post }}">Article</a>
+          <i class="fa fa-file-pdf-o" aria-hidden="true"></i>&nbsp;&nbsp;
+          {% if talks.article contains ".pdf" %}
+            <a href="{{ site.pdfs }}/{{ talks.article }}">
+          {% else %}
+            <a href="{{ talks.article }}">
+          {% endif %}
+          Slides</a>
         </span>
+        &nbsp; &nbsp;
       {% endif %}
 
       {% if talks.featured %}
