@@ -51,7 +51,7 @@ permalink: /talks-interviews/
       <i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;&nbsp; {{ talks.date | date: "%B %-d, %Y" }}
       <br>
 
-<i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;&nbsp; {{ talks.verdict }}
+<i class="fa fa-line-chart" aria-hidden="true"></i>&nbsp;&nbsp; {{ talks.verdict }}
       <br>
 
       {% if talks.slides %}
