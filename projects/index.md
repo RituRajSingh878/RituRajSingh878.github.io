@@ -25,7 +25,7 @@ permalink: /projects/
     </div>
     {% if projects.github %}
               <ul class="actions">
-								<li><a class="github-button" href="{{ projects.github }}/archive/master.zip" aria-label="Download on GitHub">Download</a></li>
+								<li><a class="github-button" href="{{ projects.github }}/archive/main.zip" aria-label="Download on GitHub">Download</a></li>
 								<li><a class="github-button" href="{{ projects.github }}" data-show-count="true" aria-label="Star on GitHub">Star</a></li>
 								<li><a class="github-button" href="{{ projects.github }}/fork" data-show-count="true" aria-label="Fork on GitHub">Fork</a></li>
 							</ul>
