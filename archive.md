@@ -17,6 +17,10 @@ permalink: /archive/
         <h3>{{ post.date | date: '%Y' }}</h3>
       {% endif %}
     {% endunless %}
+    {% if post.link %}
+    <time>{{ post.date | date:"%d %b" }}</time>&nbsp;&nbsp;&nbsp;<a href="{{ post.link }}">{{ post.title }}</a><br>
+       {% else %}
     <time>{{ post.date | date:"%d %b" }}</time>&nbsp;&nbsp;&nbsp;<a href="{{ post.url }}">{{ post.title }}</a><br>
+    {% endif %}
   {% endfor %}
 </ul>
