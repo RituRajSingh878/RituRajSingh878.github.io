@@ -1,5 +1,5 @@
 ---
-layout: page
+layout:
 title: Talks/Interviews
 permalink: /talks-interviews/
 ---

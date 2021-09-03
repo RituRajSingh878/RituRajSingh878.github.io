@@ -8,10 +8,6 @@ permalink: /about/
 
 Hi, I’m Ritu Raj Singh, pre final year student at **Indian Institute of Technology (BHU) Varanasi**. I am an active Open Source contributor.
 
-<!---
-In the past, I was a Google Summer of Code (2018) Student for FOSSASIA, an iOS Developer Intern at [Wheelstreet Inc.](https://www.wheelstreet.com/), and a Software Developer Intern at [Vertext Infosoft](https://vertexinfosoft.com/). I mentored several Open Source Programs including Google Code-In 2018 and mentoring Google Summer of Code (2019) students. I am a maintainer and core contributor to [FOSSASIA](https://fossasia.org/).
-
--->
 Apart from Coding, I love going Hackathons, attending Conferences, and Travelling.
 
 You can find me at these places but the most reliable way to reach me is to send an email.
