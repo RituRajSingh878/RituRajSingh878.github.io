@@ -21,13 +21,15 @@ layout: default
 <ul class="post-list">
   {% for post in paginator.posts %}
   <li>
+   {% if post.link %}
+    <h2> 
+	<a class="post-link" href="{{ post.link}}">{{ post.title }}</a>
+	</h2>
+   {% else %}	
     <h2>
-	  {% if post.link %}
-      <a class="post-link" href="{{ post.link}}">{{ post.title }}</a>
-	  {% else % }
 	  <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-	  {% endif %}
     </h2>
+	{% endif %}
     <section class="post-excerpt" itemprop="description">
       <p>{{ post.content | strip_html | truncatewords: 50 }}</p>
     </section>
@@ -43,6 +45,7 @@ layout: default
       {% endfor %}{% endif %}
       </div>
     </section>
+	{% endelse %}
   </li>
   {% if forloop.last == false %}
   <hr>
