@@ -22,7 +22,11 @@ layout: default
   {% for post in paginator.posts %}
   <li>
     <h2>
-      <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+	  {% if post.link %}
+      <a class="post-link" href="{{ post.link}}">{{ post.title }}</a>
+	  {% else % }
+	  <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+	  {% endif %}
     </h2>
     <section class="post-excerpt" itemprop="description">
       <p>{{ post.content | strip_html | truncatewords: 50 }}</p>
