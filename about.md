@@ -6,7 +6,7 @@ permalink: /about/
 ---
 <br>
 
-Hi, I’m Ritu Raj Singh, pre final year student at **Indian Institute of Technology (BHU) Varanasi**. I am an active Open Source contributor.
+Hi, I’m Ritu Raj Singh, final year student at **Indian Institute of Technology (BHU) Varanasi**. I am an active Open Source contributor.
 
 Apart from Coding, I love going Hackathons, attending Conferences, and Travelling.
 
