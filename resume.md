@@ -20,14 +20,14 @@ Bachelors and Masters in Mathematics and Computing (Integrated Dual Degree), CPI
 </div>
 
 **CBSE (XII)**<br>
-B.N.S ENGLISH SCHOOL NARIA BHU VARANASI, Percentage=84.60
+B.N.S ENGLISH SCHOOL NARIA VARANASI, Percentage=84.60
 <br>
 <div class="resume-footer">
 <i class="fa fa-map-marker"></i>&nbsp; Varanasi, India &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-calendar"></i>&nbsp; 2016
 </div>
 
 **CBSE (X)**<br>
-B.N.S ENGLISH SCHOOL NARIA BHU VARANASI, Percentage=91.20
+B.N.S ENGLISH SCHOOL NARIA VARANASI, Percentage=91.20
 <br>
 <div class="resume-footer">
 <i class="fa fa-map-marker"></i>&nbsp; Varanasi, India &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-calendar"></i>&nbsp; 2014
