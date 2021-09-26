@@ -13,8 +13,22 @@ I am Open for machine learning internship role. Please reach me out on the conta
 
 ## Education
 **Indian Institute of Technology (Banaras Hindu University) Varanasi, India**<br>
-Bachelors and Masters in Mathematics and Computing (Integrated Dual Degree)
+Bachelors and Masters in Mathematics and Computing (Integrated Dual Degree), CPI=8.53
 <br>
 <div class="resume-footer">
 <i class="fa fa-map-marker"></i>&nbsp; Varanasi, India &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-calendar"></i>&nbsp; July 2017 - May 2022
+</div>
+
+**CBSE (XII)**<br>
+B.N.S ENGLISH SCHOOL NARIA BHU VARANASI, Percentage=84.60
+<br>
+<div class="resume-footer">
+<i class="fa fa-map-marker"></i>&nbsp; Varanasi, India &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-calendar"></i>&nbsp; 2016
+</div>
+
+**CBSE (X)**<br>
+B.N.S ENGLISH SCHOOL NARIA BHU VARANASI, Percentage=91.20
+<br>
+<div class="resume-footer">
+<i class="fa fa-map-marker"></i>&nbsp; Varanasi, India &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-calendar"></i>&nbsp; 2014
 </div>
