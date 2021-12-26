@@ -7,9 +7,26 @@ permalink: /about/
 <br>
 
 Hi, I’m Ritu Raj Singh, final year student at **Indian Institute of Technology (BHU) Varanasi**. I am an active Open Source contributor.
-
 Apart from Coding, I love going Hackathons, attending Conferences, and Travelling.
 
+<br>
+
+<h3 class="card"> <b>NEWS</b> </h3>
+<div class="card" style="overflow-y: auto;max-height: 500px;">
+
+<div class="card-body">
+{% for post in site.posts %}
+{% if post.latest %}
+<ul>
+<time><b>{{ post.date | date:"%B %Y" }}</b></time>&nbsp;&nbsp;&nbsp;<p>{{ post.title }}</p>    
+</ul>
+{% endif %}
+{% endfor %}
+
+</div>
+</div>
+
+<br>
 You can find me at these places but the most reliable way to reach me is to send an email.
 
 <div align="center">
