@@ -20,6 +20,7 @@ layout: default
 <div class="wrapper">
 <ul class="post-list">
   {% for post in paginator.posts %}
+  {% if post.link %}
   <li>
    {% if post.link %}
     <h2> 
@@ -46,8 +47,7 @@ layout: default
       </div>
     </section>
   </li>
-  {% if forloop.last == false %}
-  <hr>
+  {% if forloop.last == false %}<hr>{% endif %}
   {% endif %}
   {% endfor %}
 </ul>
