@@ -20,7 +20,7 @@ layout: default
 <div class="wrapper">
 <ul class="post-list">
   {% for post in paginator.posts %}
-  {% if post.link %}
+  {% if post.news == false %}
   <li>
    {% if post.link %}
     <h2> 

@@ -16,7 +16,7 @@ Apart from Coding, I love going Hackathons, attending Conferences, and Travellin
 
 <div class="card-body">
 {% for post in site.posts %}
-{% if post.latest %}
+{% if post.news %}
 <ul>
 <time><b>{{ post.date | date:"%B %Y" }}</b></time>&nbsp;&nbsp;&nbsp;<p>{{ post.title }}</p>    
 </ul>
