@@ -7,7 +7,7 @@ permalink: /resume/
 
 <br>
 I am Open for machine learning internship role. Please reach me out on the contacts given on [About](/about/) page. Resume can be found below.<br><br>
-<i class="fa fa-file-pdf-o" aria-hidden="true"></i>&nbsp;&nbsp; <a href="/assets/resume/RituRaj_latest.pdf">Download/View Resume (Last Updated on 28 August 2022)</a>
+<i class="fa fa-file-pdf-o" aria-hidden="true"></i>&nbsp;&nbsp; <a href="/assets/resume/RituRaj_latest.pdf">Download/View Resume (Last Updated on 5 November 2023)</a>
 
 <hr>
 
