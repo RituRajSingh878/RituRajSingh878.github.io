@@ -1,0 +1,141 @@
+<div class="news-banner-section section">
+  <div class="section-header section-item">
+    <span class="section-label">Latest News</span>
+    <h2 class="section-title">Recent Updates</h2>
+  </div>
+  
+  <div class="news-banner-container">
+    <div class="news-banner-wrapper" id="news-banner-wrapper">
+      {% assign news_posts = site.posts | where: "news", true | limit: 10 %}
+      {% if news_posts.size > 0 %}
+      {% for post in news_posts %}
+      <div class="news-slide">
+        <div class="news-slide-content">
+          <div class="news-date">
+            <i class="fa fa-calendar"></i>
+            <span>{{ post.date | date: "%B %d, %Y" }}</span>
+          </div>
+          <h3 class="news-title">{{ post.title }}</h3>
+          {% if post.excerpt %}
+          <p class="news-excerpt">{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
+          {% endif %}
+          {% if post.link %}
+          <a href="{{ post.link }}" target="_blank" class="news-link">
+            Read More <i class="fa fa-arrow-right"></i>
+          </a>
+          {% elsif post.url %}
+          <a href="{{ post.url | prepend: site.baseurl }}" class="news-link">
+            Read More <i class="fa fa-arrow-right"></i>
+          </a>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+      {% else %}
+      <div class="news-slide">
+        <div class="news-slide-content">
+          <p style="text-align: center; color: #666; padding: 2em;">No news updates available at the moment.</p>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+    
+    <div class="news-banner-controls">
+      <button class="news-nav-btn news-prev" id="news-prev">
+        <i class="fa fa-chevron-left"></i>
+      </button>
+      <div class="news-indicators" id="news-indicators"></div>
+      <button class="news-nav-btn news-next" id="news-next">
+        <i class="fa fa-chevron-right"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const wrapper = document.getElementById('news-banner-wrapper');
+  const prevBtn = document.getElementById('news-prev');
+  const nextBtn = document.getElementById('news-next');
+  const indicators = document.getElementById('news-indicators');
+  
+  if (!wrapper) return;
+  
+  const slides = wrapper.querySelectorAll('.news-slide');
+  if (slides.length <= 1) {
+    if (prevBtn) prevBtn.style.display = 'none';
+    if (nextBtn) nextBtn.style.display = 'none';
+    if (indicators) indicators.style.display = 'none';
+    return;
+  }
+  
+  let currentSlide = 0;
+  const totalSlides = slides.length;
+  
+  // Create indicators
+  if (indicators) {
+    for (let i = 0; i < totalSlides; i++) {
+      const indicator = document.createElement('span');
+      indicator.className = 'news-indicator';
+      if (i === 0) indicator.classList.add('active');
+      indicator.addEventListener('click', () => goToSlide(i));
+      indicators.appendChild(indicator);
+    }
+  }
+  
+  // Show slide
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.style.display = i === index ? 'block' : 'none';
+    });
+    
+    // Update indicators
+    if (indicators) {
+      const indicatorItems = indicators.querySelectorAll('.news-indicator');
+      indicatorItems.forEach((ind, i) => {
+        ind.classList.toggle('active', i === index);
+      });
+    }
+  }
+  
+  // Go to specific slide
+  function goToSlide(index) {
+    currentSlide = index;
+    if (currentSlide < 0) currentSlide = totalSlides - 1;
+    if (currentSlide >= totalSlides) currentSlide = 0;
+    showSlide(currentSlide);
+  }
+  
+  // Next slide
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    showSlide(currentSlide);
+  }
+  
+  // Previous slide
+  function prevSlide() {
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    showSlide(currentSlide);
+  }
+  
+  // Event listeners
+  if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+  if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+  
+  // Auto-advance slides
+  let autoSlideInterval = setInterval(nextSlide, 5000);
+  
+  // Pause on hover
+  wrapper.addEventListener('mouseenter', () => {
+    clearInterval(autoSlideInterval);
+  });
+  
+  wrapper.addEventListener('mouseleave', () => {
+    autoSlideInterval = setInterval(nextSlide, 5000);
+  });
+  
+  // Initialize
+  showSlide(0);
+})();
+</script>
+

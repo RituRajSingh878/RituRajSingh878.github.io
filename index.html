@@ -42,42 +42,18 @@ layout: default
           Building production-grade LLM applications with a focus on evaluation, fine-tuning, and encrypted inference.
         </p>
       </div>
-      <div class="about-grid">
-        <div class="about-card section-item">
-          <div class="about-icon">
-            <i class="fa fa-graduation-cap"></i>
-          </div>
-          <h3>Education</h3>
-          <p>IIT (BHU) Varanasi<br>Mathematics & Computing<br>CPI: 8.53</p>
-        </div>
-        <div class="about-card section-item">
-          <div class="about-icon">
-            <i class="fa fa-briefcase"></i>
-          </div>
-          <h3>Current Role</h3>
-          <p>Software Engineer II<br>Fortanix<br>Aug 2024 - Present</p>
-        </div>
-        <div class="about-card section-item">
-          <div class="about-icon">
-            <i class="fa fa-code"></i>
-          </div>
-          <h3>Open Source</h3>
-          <p>Active Contributor<br>SymPy, Vowpal Wabbit<br>Multiple Projects</p>
-        </div>
-        <div class="about-card section-item">
-          <div class="about-icon">
-            <i class="fa fa-lightbulb-o"></i>
-          </div>
-          <h3>Expertise</h3>
-          <p>LLMs & RAG<br>Model Fine-Tuning<br>Secure AI Systems</p>
-        </div>
-      </div>
       <div class="section-footer">
         <a href="{{ site.baseurl }}/about/" class="btn btn-outline">
           Read Full Story <i class="fa fa-arrow-right"></i>
         </a>
       </div>
     </section>
+
+    <!-- News Banner -->
+    {% include news-banner.html %}
+
+    <!-- Page References -->
+    {% include page-references.html %}
 
     <!-- GitHub Stats -->
     {% include github-profile.html %}
