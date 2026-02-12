@@ -5,18 +5,20 @@
     </h2>
   </div>
   
-  <!-- GitHub Contributions Chart (Bar Chart) -->
+  <!-- GitHub Contributions Chart (Table with Green Squares) -->
   <div class="github-contributions section-item" style="margin-bottom: 3em; text-align: center;">
     <h3 style="color: #2c3e50; margin-bottom: 1.5em; font-size: 1.2em; font-weight: 600;">
       Contribution Activity
     </h3>
-    <div style="background: #f8f9fa; padding: 2em; border-radius: 8px; border: 1px solid #e9ecef;">
-      <img 
-        src="https://ghchart.rshah.org/{{ site.github_username }}" 
-        alt="GitHub Contributions Chart"
-        style="width: 100%; max-width: 900px; height: auto; border-radius: 4px; display: block; margin: 0 auto;"
-        onerror="this.style.display='none'"
-      />
+    <div style="background: #f8f9fa; padding: 2em; border-radius: 8px; border: 1px solid #e9ecef; overflow-x: auto;">
+      <!-- GitHub Contributions Calendar (Green Squares Table) -->
+      <div style="display: inline-block; background: white; padding: 1.5em; border-radius: 4px; width: 100%; max-width: 900px;">
+        <img 
+          src="https://ghchart.rshah.org/{{ site.github_username }}" 
+          alt="GitHub Contributions Chart"
+          style="width: 100%; height: auto; display: block; min-width: 700px;"
+        />
+      </div>
     </div>
   </div>
   
@@ -88,17 +90,17 @@
         </div>
       `).join('');
       
+      profileContainer.innerHTML = statsHTML;
+      
       // Animate stats after they're loaded
       setTimeout(() => {
-        const statsItems = profileContainer.querySelectorAll('.section-item');
+        const statsItems = profileContainer.querySelectorAll('.section-item:not(.animate-in)');
         statsItems.forEach((item, idx) => {
           setTimeout(() => {
             item.classList.add('animate-in');
-          }, idx * 150);
+          }, idx * 200);
         });
-      }, 100);
-      
-      profileContainer.innerHTML = statsHTML;
+      }, 200);
     })
     .catch(error => {
       console.error('Error fetching GitHub data:', error);

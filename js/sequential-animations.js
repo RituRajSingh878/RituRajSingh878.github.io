@@ -10,51 +10,54 @@
   document.addEventListener('DOMContentLoaded', function() {
     // Add initial hidden state styles
     const style = document.createElement('style');
+    style.id = 'sequential-animations-style';
     style.textContent = `
       .section-item {
-        opacity: 0;
-        transform: translateY(30px);
-        transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        opacity: 0 !important;
+        transform: translateY(30px) !important;
+        transition: opacity 0.7s ease-out, transform 0.7s ease-out !important;
       }
       
       .section-item.animate-in {
-        opacity: 1;
-        transform: translateY(0);
+        opacity: 1 !important;
+        transform: translateY(0) !important;
       }
       
       .section-header.section-item {
-        opacity: 0;
-        transform: translateY(20px);
+        opacity: 0 !important;
+        transform: translateY(20px) !important;
       }
       
       .section-header.section-item.animate-in {
-        opacity: 1;
-        transform: translateY(0);
+        opacity: 1 !important;
+        transform: translateY(0) !important;
       }
     `;
     document.head.appendChild(style);
 
-    // Start sequential animation
-    animateSectionsSequentially();
+    // Small delay to ensure DOM is fully ready
+    setTimeout(() => {
+      animateSectionsSequentially();
+    }, 100);
   });
 
   function animateSectionsSequentially() {
     const sections = document.querySelectorAll('.section');
     
-    if (sections.length === 0) return;
+    if (sections.length === 0) {
+      console.log('No sections found for animation');
+      return;
+    }
 
-    let currentDelay = 500; // Initial delay before first section
+    let currentDelay = 300; // Initial delay before first section
 
     sections.forEach((section, sectionIndex) => {
       // Get all items in this section
       const items = getSectionItems(section);
-      
-      if (items.length === 0) return;
 
       // Animate section header first (if exists)
       const sectionHeader = section.querySelector('.section-header');
-      if (sectionHeader) {
-        sectionHeader.classList.add('section-item');
+      if (sectionHeader && sectionHeader.classList.contains('section-item')) {
         setTimeout(() => {
           sectionHeader.classList.add('animate-in');
         }, currentDelay);
