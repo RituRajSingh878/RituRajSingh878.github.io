@@ -1,0 +1,28 @@
+<div class="resume-timeline">
+  {% for item in include.items %}
+  <div class="resume-timeline-item">
+    <div class="resume-timeline-dot"></div>
+    <div class="resume-timeline-content">
+      <div class="resume-timeline-title">{{ item.title }}</div>
+      {% if item.subtitle %}
+      <div class="resume-timeline-subtitle">{{ item.subtitle }}</div>
+      {% endif %}
+      {% if item.description %}
+      <div class="timeline-description">{{ item.description }}</div>
+      {% endif %}
+      <div class="resume-timeline-meta">
+        {% if item.location %}
+        <span><i class="fa fa-map-marker"></i>{{ item.location }}</span>
+        {% endif %}
+        {% if item.date %}
+        <span><i class="fa fa-calendar"></i>{{ item.date }}</span>
+        {% endif %}
+        {% if item.grade %}
+        <span><i class="fa fa-graduation-cap"></i>{{ item.grade }}</span>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
