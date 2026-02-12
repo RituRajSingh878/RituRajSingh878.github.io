@@ -8,8 +8,8 @@ permalink: /resume/
 <div style="text-align: center; margin: 2em 0; padding: 1.5em; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
   <p style="color: white; font-size: 1.1em; margin-bottom: 1em;">
     <i class="fa fa-file-pdf-o" aria-hidden="true" style="font-size: 1.2em;"></i>
-    <a href="/assets/resume/RituRaj_latest.pdf" style="color: white; text-decoration: underline; font-weight: bold;">
-      Download/View Resume (Last Updated on 5 November 2023)
+    <a href="https://drive.google.com/file/d/1_NpnQ8799kXhQ9xjku7dX-sGrtX7EXGK/view" target="_blank" style="color: white; text-decoration: underline; font-weight: bold;">
+      Download/View Resume
     </a>
   </p>
   <p style="color: rgba(255,255,255,0.9); font-size: 0.9em;">
