@@ -1,22 +1,32 @@
-<header class="navigation" role="banner">
+<header class="navigation modern-nav" role="banner">
   <div class="navigation-wrapper">
     <a href="{{ site.baseurl }}/" class="logo">
       {% if site.logo %}
       <img src="{{ site.logo | prepend: site.baseurl }}" alt="{{ site.title }}">
       {% else %}
-      <h2>{{ site.title }}</h2>
+      <span class="logo-text">{{ site.title | split: " " | first }}</span>
+      <span class="logo-text-secondary">{{ site.title | split: " " | last }}</span>
       {% endif %}
     </a>
     <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
-      <i class="fa fa-bars"></i>
+      <span></span>
+      <span></span>
+      <span></span>
     </a>
     <nav role="navigation">
       <ul id="js-navigation-menu" class="navigation-menu show">
         {% for page in site.pages %}
           {% if page.title and page.main_nav != false %}
-          <li class="nav-link"><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
+          <li class="nav-link">
+            <a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
+          </li>
           {% endif %}
         {% endfor %}
+        <li class="nav-link nav-cta">
+          <a href="{{ site.baseurl }}/resume/" class="nav-resume-btn">
+            <i class="fa fa-download"></i> Resume
+          </a>
+        </li>
       </ul>
     </nav>
   </div>
