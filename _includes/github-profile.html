@@ -13,14 +13,72 @@
     <div style="background: #f8f9fa; padding: 2em; border-radius: 8px; border: 1px solid #e9ecef; overflow-x: auto;">
       <!-- GitHub Contributions Calendar (Green Squares Table) -->
       <div style="display: inline-block; background: white; padding: 1.5em; border-radius: 4px; width: 100%; max-width: 900px;">
-        <img 
-          src="https://ghchart.rshah.org/{{ site.github_username }}" 
-          alt="GitHub Contributions Chart"
-          style="width: 100%; height: auto; display: block; min-width: 700px;"
-        />
+        <div id="contributions-chart-container" style="width: 100%; min-height: 200px; display: flex; align-items: center; justify-content: center;">
+          <img 
+            id="github-contributions-chart"
+            src="" 
+            alt="GitHub Contributions Chart"
+            style="width: 100%; height: auto; display: block; min-width: 700px; max-width: 100%;"
+          />
+        </div>
+        <p style="margin-top: 1em; font-size: 0.85em; color: #999;">
+          <a href="https://github.com/{{ site.github_username }}" target="_blank" style="color: #2c3e50; text-decoration: underline;">
+            View full contributions on GitHub
+          </a>
+        </p>
       </div>
     </div>
   </div>
+  
+  <script>
+  (function() {
+    // Load contributions chart
+    const username = '{{ site.github_username }}'.trim();
+    if (username) {
+      const chartImg = document.getElementById('github-contributions-chart');
+      const container = document.getElementById('contributions-chart-container');
+      
+      if (chartImg && container) {
+        // Try multiple chart services
+        const chartServices = [
+          `https://ghchart.rshah.org/${username}`,
+          `https://github-readme-activity-graph.vercel.app/graph?username=${username}&theme=github`,
+          `https://github-contributions-api.deno.dev/${username}.svg`
+        ];
+        
+        let currentService = 0;
+        
+        function tryNextService() {
+          if (currentService < chartServices.length) {
+            chartImg.src = chartServices[currentService];
+            chartImg.onerror = function() {
+              currentService++;
+              if (currentService < chartServices.length) {
+                tryNextService();
+              } else {
+                // All services failed, show fallback
+                container.innerHTML = `
+                  <div style="text-align: center; padding: 2em;">
+                    <p style="color: #666; margin-bottom: 1em;">Unable to load contributions chart.</p>
+                    <a href="https://github.com/${username}" target="_blank" style="display: inline-block; padding: 0.8em 1.5em; background: #2c3e50; color: white; text-decoration: none; border-radius: 6px;">
+                      View on GitHub
+                    </a>
+                  </div>
+                `;
+              }
+            };
+            chartImg.onload = function() {
+              // Successfully loaded
+              chartImg.style.display = 'block';
+            };
+          }
+        }
+        
+        tryNextService();
+      }
+    }
+  })();
+  </script>
   
   <div id="github-profile" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5em; margin-bottom: 2em;">
     <!-- Profile stats will be loaded here via JavaScript -->
@@ -41,78 +99,120 @@
 
 <script>
 (function() {
-  const username = '{{ site.github_username }}';
-  if (!username) return;
-  
-  const profileContainer = document.getElementById('github-profile');
-  
-  // Fetch GitHub profile data
-  fetch(`https://api.github.com/users/${username}`)
-    .then(r => r.json())
-    .then(profile => {
-      if (profile.message && profile.message.includes('API rate limit')) {
+  // Wait for DOM to be ready
+  function initGitHubProfile() {
+    const username = '{{ site.github_username }}'.trim();
+    if (!username || username === '') {
+      console.error('GitHub username not found in config');
+      const profileContainer = document.getElementById('github-profile');
+      if (profileContainer) {
         profileContainer.innerHTML = `
           <div style="text-align: center; grid-column: 1 / -1; padding: 2em;">
-            <p style="font-size: 1em; color: #666;">GitHub API rate limit reached. Please visit my profile directly:</p>
-            <a href="https://github.com/${username}" target="_blank" style="color: #2c3e50; text-decoration: underline;">
-              github.com/${username}
+            <p style="font-size: 1em; color: #666;">GitHub username not configured.</p>
+          </div>
+        `;
+      }
+      return;
+    }
+    
+    const profileContainer = document.getElementById('github-profile');
+    if (!profileContainer) {
+      console.error('GitHub profile container not found');
+      return;
+    }
+    
+    // Fetch GitHub profile data
+    fetch(`https://api.github.com/users/${username}`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(profile => {
+        // Check for API errors
+        if (profile.message) {
+          if (profile.message.includes('API rate limit') || profile.message.includes('rate limit')) {
+            profileContainer.innerHTML = `
+              <div style="text-align: center; grid-column: 1 / -1; padding: 2em;">
+                <p style="font-size: 1em; color: #666;">GitHub API rate limit reached. Please visit my profile directly:</p>
+                <a href="https://github.com/${username}" target="_blank" style="color: #2c3e50; text-decoration: underline;">
+                  github.com/${username}
+                </a>
+              </div>
+            `;
+            return;
+          }
+          if (profile.message.includes('Not Found')) {
+            throw new Error('GitHub user not found');
+          }
+        }
+        
+        // Validate profile data
+        if (!profile.public_repos && !profile.followers && !profile.following) {
+          throw new Error('Invalid profile data received');
+        }
+        
+        const stats = [
+          {
+            icon: 'fa-code-fork',
+            label: 'Repositories',
+            value: profile.public_repos || 0
+          },
+          {
+            icon: 'fa-users',
+            label: 'Followers',
+            value: profile.followers || 0
+          },
+          {
+            icon: 'fa-heart',
+            label: 'Following',
+            value: profile.following || 0
+          }
+        ];
+        
+        let statsHTML = stats.map((stat, index) => `
+          <div class="section-item" style="text-align: center; padding: 1.5em; background: #f8f9fa; border-radius: 8px; border: 1px solid #e9ecef;">
+            <div style="font-size: 2em; color: #2c3e50; margin-bottom: 0.5em;">
+              <i class="fa ${stat.icon}"></i>
+            </div>
+            <div style="font-size: 1.8em; font-weight: bold; margin-bottom: 0.3em; color: #2c3e50;">${stat.value}</div>
+            <div style="font-size: 0.9em; color: #666;">${stat.label}</div>
+          </div>
+        `).join('');
+        
+        profileContainer.innerHTML = statsHTML;
+        
+        // Animate stats after they're loaded
+        setTimeout(() => {
+          const statsItems = profileContainer.querySelectorAll('.section-item:not(.animate-in)');
+          statsItems.forEach((item, idx) => {
+            setTimeout(() => {
+              item.classList.add('animate-in');
+            }, idx * 200);
+          });
+        }, 200);
+      })
+      .catch(error => {
+        console.error('Error fetching GitHub data:', error);
+        profileContainer.innerHTML = `
+          <div style="text-align: center; grid-column: 1 / -1; padding: 2em;">
+            <p style="font-size: 1em; color: #666; margin-bottom: 0.5em;">Unable to load GitHub profile.</p>
+            <p style="font-size: 0.9em; color: #999; margin-bottom: 1em;">${error.message || 'Network error'}</p>
+            <a href="https://github.com/${username}" target="_blank" style="color: #2c3e50; text-decoration: underline; font-size: 1.1em;">
+              Visit github.com/${username}
             </a>
           </div>
         `;
-        return;
-      }
-      
-      const stats = [
-        {
-          icon: 'fa-code-fork',
-          label: 'Repositories',
-          value: profile.public_repos || 0
-        },
-        {
-          icon: 'fa-users',
-          label: 'Followers',
-          value: profile.followers || 0
-        },
-        {
-          icon: 'fa-heart',
-          label: 'Following',
-          value: profile.following || 0
-        }
-      ];
-      
-      let statsHTML = stats.map((stat, index) => `
-        <div class="section-item" style="text-align: center; padding: 1.5em; background: #f8f9fa; border-radius: 8px; border: 1px solid #e9ecef;">
-          <div style="font-size: 2em; color: #2c3e50; margin-bottom: 0.5em;">
-            <i class="fa ${stat.icon}"></i>
-          </div>
-          <div style="font-size: 1.8em; font-weight: bold; margin-bottom: 0.3em; color: #2c3e50;">${stat.value}</div>
-          <div style="font-size: 0.9em; color: #666;">${stat.label}</div>
-        </div>
-      `).join('');
-      
-      profileContainer.innerHTML = statsHTML;
-      
-      // Animate stats after they're loaded
-      setTimeout(() => {
-        const statsItems = profileContainer.querySelectorAll('.section-item:not(.animate-in)');
-        statsItems.forEach((item, idx) => {
-          setTimeout(() => {
-            item.classList.add('animate-in');
-          }, idx * 200);
-        });
-      }, 200);
-    })
-    .catch(error => {
-      console.error('Error fetching GitHub data:', error);
-      profileContainer.innerHTML = `
-        <div style="text-align: center; grid-column: 1 / -1; padding: 2em;">
-          <p style="font-size: 1em; color: #666;">Unable to load GitHub profile. Please visit:</p>
-          <a href="https://github.com/${username}" target="_blank" style="color: #2c3e50; text-decoration: underline; font-size: 1.1em;">
-            github.com/${username}
-          </a>
-        </div>
-      `;
-    });
+      });
+  }
+  
+  // Run when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initGitHubProfile);
+  } else {
+    initGitHubProfile();
+  }
 })();
 </script>
 
