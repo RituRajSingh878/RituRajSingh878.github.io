@@ -748,10 +748,14 @@
   gap: 0.5em;
 }
 
-/* Desktop: Always show menu */
+/* Desktop: Always show menu and hide hamburger */
 @media screen and (min-width: 769px) {
   .modern-nav .navigation-menu {
     display: flex !important;
+  }
+  
+  .modern-nav .navigation-menu-button {
+    display: none !important;
   }
 }
 
@@ -801,7 +805,7 @@
 }
 
 .modern-nav .navigation-menu-button {
-  display: none; /* Hidden by default */
+  display: none; /* Hidden by default - only show on mobile */
   flex-direction: column;
   gap: 5px;
   width: 30px;

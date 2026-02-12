@@ -40,7 +40,7 @@ layout: default
   <div class="wrapper">
     <!-- About Preview Section -->
     <section id="about-preview" class="section about-preview">
-      <div class="section-header">
+      <div class="section-header section-item">
         <span class="section-label">About Me</span>
         <h2 class="section-title">Who I Am</h2>
         <p class="section-description">
@@ -49,28 +49,28 @@ layout: default
         </p>
       </div>
       <div class="about-grid">
-        <div class="about-card">
+        <div class="about-card section-item">
           <div class="about-icon">
             <i class="fa fa-graduation-cap"></i>
           </div>
           <h3>Education</h3>
           <p>IIT (BHU) Varanasi<br>Mathematics & Computing<br>CPI: 8.53</p>
         </div>
-        <div class="about-card">
+        <div class="about-card section-item">
           <div class="about-icon">
             <i class="fa fa-briefcase"></i>
           </div>
           <h3>Current Role</h3>
           <p>Data Engineer<br>Citrix Systems<br>2022 - Present</p>
         </div>
-        <div class="about-card">
+        <div class="about-card section-item">
           <div class="about-icon">
             <i class="fa fa-code"></i>
           </div>
           <h3>Open Source</h3>
           <p>Active Contributor<br>SymPy, Vowpal Wabbit<br>Multiple Projects</p>
         </div>
-        <div class="about-card">
+        <div class="about-card section-item">
           <div class="about-icon">
             <i class="fa fa-lightbulb-o"></i>
           </div>
@@ -85,206 +85,7 @@ layout: default
       </div>
     </section>
 
-    <!-- Skills Section -->
-    <section class="section skills-section">
-      <div class="section-header">
-        <span class="section-label">Skills & Technologies</span>
-        <h2 class="section-title">What I Work With</h2>
-      </div>
-      <div class="skills-grid">
-        <div class="skill-category">
-          <h3 class="skill-category-title">
-            <i class="fa fa-database"></i> Data Engineering
-          </h3>
-          <div class="skill-tags">
-            <span class="skill-tag">Python</span>
-            <span class="skill-tag">SQL</span>
-            <span class="skill-tag">Apache Spark</span>
-            <span class="skill-tag">ETL Pipelines</span>
-            <span class="skill-tag">Data Warehousing</span>
-          </div>
-        </div>
-        <div class="skill-category">
-          <h3 class="skill-category-title">
-            <i class="fa fa-line-chart"></i> Machine Learning
-          </h3>
-          <div class="skill-tags">
-            <span class="skill-tag">Scikit-learn</span>
-            <span class="skill-tag">TensorFlow</span>
-            <span class="skill-tag">PyTorch</span>
-            <span class="skill-tag">Pandas</span>
-            <span class="skill-tag">NumPy</span>
-          </div>
-        </div>
-        <div class="skill-category">
-          <h3 class="skill-category-title">
-            <i class="fa fa-cloud"></i> Cloud & Tools
-          </h3>
-          <div class="skill-tags">
-            <span class="skill-tag">AWS</span>
-            <span class="skill-tag">Docker</span>
-            <span class="skill-tag">Git</span>
-            <span class="skill-tag">Linux</span>
-            <span class="skill-tag">CI/CD</span>
-          </div>
-        </div>
-        <div class="skill-category">
-          <h3 class="skill-category-title">
-            <i class="fa fa-code"></i> Programming
-          </h3>
-          <div class="skill-tags">
-            <span class="skill-tag">Python</span>
-            <span class="skill-tag">C++</span>
-            <span class="skill-tag">Java</span>
-            <span class="skill-tag">JavaScript</span>
-            <span class="skill-tag">Bash</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Experience Highlights -->
-    <section class="section experience-section">
-      <div class="section-header">
-        <span class="section-label">Experience</span>
-        <h2 class="section-title">Professional Journey</h2>
-      </div>
-      <div class="experience-timeline-compact">
-        <div class="exp-item">
-          <div class="exp-year">2022 - Present</div>
-          <div class="exp-content">
-            <h3>Data Engineer</h3>
-            <p class="exp-company">Citrix Systems</p>
-            <p class="exp-description">Building scalable data pipelines and analytics solutions</p>
-          </div>
-        </div>
-        <div class="exp-item">
-          <div class="exp-year">2020</div>
-          <div class="exp-content">
-            <h3>Intern</h3>
-            <p class="exp-company">Citrix & Amazon Applied Science</p>
-            <p class="exp-description">Summer internships in data engineering and ML</p>
-          </div>
-        </div>
-        <div class="exp-item">
-          <div class="exp-year">2018 - 2022</div>
-          <div class="exp-content">
-            <h3>Open Source Contributor</h3>
-            <p class="exp-company">SymPy, Vowpal Wabbit, NumFocus</p>
-            <p class="exp-description">Contributing to open source ML and scientific computing projects</p>
-          </div>
-        </div>
-      </div>
-      <div class="section-footer">
-        <a href="{{ site.baseurl }}/about/" class="btn btn-outline">
-          View Full Journey <i class="fa fa-arrow-right"></i>
-        </a>
-      </div>
-    </section>
-
-    <!-- Projects Preview -->
-    <section class="section projects-section">
-      <div class="section-header">
-        <span class="section-label">Projects</span>
-        <h2 class="section-title">Featured Work</h2>
-        <p class="section-description">
-          Open source contributions and innovative projects I've worked on
-        </p>
-      </div>
-      <div class="projects-grid">
-        {% for project in site.projects limit:3 %}
-        <div class="project-card">
-          {% if project.image %}
-          <div class="project-image">
-            <img src="{{ project.image }}" alt="{{ project.title }}">
-            <div class="project-overlay">
-              {% if project.github %}
-              <a href="{{ project.github }}" target="_blank" class="project-link">
-                <i class="fa fa-github"></i>
-              </a>
-              {% endif %}
-              {% if project.weblink %}
-              <a href="{{ project.weblink }}" target="_blank" class="project-link">
-                <i class="fa fa-external-link"></i>
-              </a>
-              {% endif %}
-            </div>
-          </div>
-          {% endif %}
-          <div class="project-content">
-            <h3 class="project-title">{{ project.title }}</h3>
-            <p class="project-description">{{ project.description }}</p>
-            <div class="project-meta">
-              {% if project.languages %}
-              <span class="project-lang">
-                <i class="fa fa-code"></i> {{ project.languages }}
-              </span>
-              {% endif %}
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-      <div class="section-footer">
-        <a href="{{ site.baseurl }}/projects/" class="btn btn-primary">
-          View All Projects <i class="fa fa-arrow-right"></i>
-        </a>
-      </div>
-    </section>
-
     <!-- GitHub Stats -->
     {% include github-profile.html %}
-
-    <!-- Latest Articles -->
-    <section class="section articles-section">
-      <div class="section-header">
-        <span class="section-label">Writing</span>
-        <h2 class="section-title">Latest Articles</h2>
-        <p class="section-description">
-          Thoughts, tutorials, and insights on technology and open source
-        </p>
-      </div>
-      <div class="articles-grid">
-        {% assign recent_posts = site.posts | where: "news", false | limit: 3 %}
-        {% for post in recent_posts %}
-        <article class="article-card">
-          <div class="article-date">
-            <span class="article-month">{{ post.date | date: "%b" }}</span>
-            <span class="article-day">{{ post.date | date: "%d" }}</span>
-          </div>
-          <div class="article-content">
-            <h3 class="article-title">
-              <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-            </h3>
-            <p class="article-excerpt">{{ post.content | strip_html | truncatewords: 25 }}</p>
-            <a href="{{ post.url | prepend: site.baseurl }}" class="article-link">
-              Read More <i class="fa fa-arrow-right"></i>
-            </a>
-          </div>
-        </article>
-        {% endfor %}
-      </div>
-      <div class="section-footer">
-        <a href="{{ site.baseurl }}/articles/" class="btn btn-outline">
-          View All Articles <i class="fa fa-arrow-right"></i>
-        </a>
-      </div>
-    </section>
-
-    <!-- Contact CTA -->
-    <section class="section contact-cta">
-      <div class="cta-content">
-        <h2>Let's Connect</h2>
-        <p>I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology.</p>
-        <div class="cta-buttons">
-          <a href="mailto:{{ site.email }}" class="btn btn-primary">
-            <i class="fa fa-envelope"></i> Get In Touch
-          </a>
-          <a href="{{ site.baseurl }}/about/" class="btn btn-outline">
-            Learn More <i class="fa fa-user"></i>
-          </a>
-        </div>
-      </div>
-    </section>
   </div>
 </div>
