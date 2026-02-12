@@ -31,16 +31,31 @@ $(document).ready(function() {
   // Syntax highlighting
   hljs.initHighlightingOnLoad();
 
-  // Header
-  var menuToggle = $('#js-mobile-menu').unbind();
-  $('#js-navigation-menu').removeClass("show");
+  // Header - Mobile Menu Toggle
+  var menuToggle = $('#js-mobile-menu');
+  var navMenu = $('#js-navigation-menu');
+  
+  // Remove show class on load for mobile
+  if ($(window).width() <= 768) {
+    navMenu.removeClass("show");
+  }
+  
   menuToggle.on('click', function(e) {
     e.preventDefault();
-    $('#js-navigation-menu').slideToggle(function(){
-      if($('#js-navigation-menu').is(':hidden')) {
-        $('#js-navigation-menu').removeAttr('style');
+    navMenu.toggleClass("show");
+    
+    // Animate hamburger icon
+    $(this).toggleClass("active");
+  });
+  
+  // Close menu when clicking outside on mobile
+  $(document).on('click', function(e) {
+    if ($(window).width() <= 768) {
+      if (!$(e.target).closest('.navigation').length) {
+        navMenu.removeClass("show");
+        menuToggle.removeClass("active");
       }
-    });
+    }
   });
 
   //Make sure all the post's links open in a new tab

@@ -4,35 +4,26 @@ layout: default
 
 <div class="home">
   <!-- Hero Section -->
-  <section class="hero-section">
-    <div class="hero-background"></div>
+  <section class="hero-section simple-hero">
     <div class="hero-content">
       <div class="hero-avatar">
         <img src="{{ site.head }}" alt="{{ site.name }}" class="avatar-image">
-        <div class="avatar-ring"></div>
       </div>
       <h1 class="hero-title">
-        <span class="hero-greeting">Hello, I'm</span>
         <span class="hero-name">{{ site.name }}</span>
       </h1>
       <p class="hero-subtitle">
-        <span class="typing-text">Data Engineer</span>
-        <span class="typing-cursor">|</span>
+        Data Engineer at Citrix | IIT (BHU) Graduate | Open Source Contributor
       </p>
       <p class="hero-description">
-        Building scalable data solutions at <strong>Citrix</strong> | 
-        IIT (BHU) Graduate | Open Source Contributor | 
-        Passionate about Machine Learning & Data Engineering
+        I'm a Data Engineer building scalable data solutions at Citrix Systems. 
+        A graduate from IIT (BHU) Varanasi with a degree in Mathematics and Computing. 
+        Passionate about Machine Learning, Open Source development, and data engineering.
       </p>
       <div class="hero-cta">
-        <a href="{{ site.baseurl }}/about/" class="btn btn-primary">
-          <span>Learn More About Me</span>
-          <i class="fa fa-arrow-right"></i>
-        </a>
-        <a href="{{ site.baseurl }}/resume/" class="btn btn-secondary">
-          <i class="fa fa-download"></i>
-          <span>Download Resume</span>
-        </a>
+        <a href="{{ site.baseurl }}/about/" class="btn btn-primary">About Me</a>
+        <a href="{{ site.baseurl }}/resume/" class="btn btn-secondary">Resume</a>
+        <a href="{{ site.baseurl }}/articles/" class="btn btn-secondary">Articles</a>
       </div>
       <div class="hero-social">
         {% for social in site.social %}
@@ -43,12 +34,6 @@ layout: default
           {% endif %}
         {% endfor %}
       </div>
-    </div>
-    <div class="hero-scroll">
-      <a href="#about-preview" class="scroll-indicator">
-        <span>Scroll</span>
-        <i class="fa fa-chevron-down"></i>
-      </a>
     </div>
   </section>
 
