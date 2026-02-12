@@ -145,20 +145,35 @@
     // Fetch GitHub profile data
     fetch(`https://api.github.com/users/${username}`)
       .then(response => {
+        // Handle 403 (rate limit) and other errors gracefully
+        if (response.status === 403) {
+          profileContainer.innerHTML = `
+            <div style="text-align: center; grid-column: 1 / -1; padding: 2em;">
+              <p style="font-size: 1em; color: #666; margin-bottom: 0.5em;">GitHub API rate limit reached.</p>
+              <a href="https://github.com/${username}" target="_blank" style="display: inline-block; padding: 0.8em 1.5em; background: #2c3e50; color: white; text-decoration: none; border-radius: 6px; margin-top: 0.5em;">
+                Visit GitHub Profile <i class="fa fa-external-link"></i>
+              </a>
+            </div>
+          `;
+          return null;
+        }
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         return response.json();
       })
       .then(profile => {
+        // If we got null (403 error), stop here
+        if (!profile) return;
+        
         // Check for API errors
         if (profile.message) {
-          if (profile.message.includes('API rate limit') || profile.message.includes('rate limit')) {
+          if (profile.message.includes('API rate limit') || profile.message.includes('rate limit') || profile.message.includes('403')) {
             profileContainer.innerHTML = `
               <div style="text-align: center; grid-column: 1 / -1; padding: 2em;">
-                <p style="font-size: 1em; color: #666;">GitHub API rate limit reached. Please visit my profile directly:</p>
-                <a href="https://github.com/${username}" target="_blank" style="color: #2c3e50; text-decoration: underline;">
-                  github.com/${username}
+                <p style="font-size: 1em; color: #666; margin-bottom: 0.5em;">GitHub API rate limit reached.</p>
+                <a href="https://github.com/${username}" target="_blank" style="display: inline-block; padding: 0.8em 1.5em; background: #2c3e50; color: white; text-decoration: none; border-radius: 6px; margin-top: 0.5em;">
+                  Visit GitHub Profile <i class="fa fa-external-link"></i>
                 </a>
               </div>
             `;
@@ -215,13 +230,15 @@
         }, 200);
       })
       .catch(error => {
-        console.error('Error fetching GitHub data:', error);
+        // Only log non-403 errors to console
+        if (!error.message || !error.message.includes('403')) {
+          console.error('Error fetching GitHub data:', error);
+        }
         profileContainer.innerHTML = `
           <div style="text-align: center; grid-column: 1 / -1; padding: 2em;">
             <p style="font-size: 1em; color: #666; margin-bottom: 0.5em;">Unable to load GitHub profile.</p>
-            <p style="font-size: 0.9em; color: #999; margin-bottom: 1em;">${error.message || 'Network error'}</p>
-            <a href="https://github.com/${username}" target="_blank" style="color: #2c3e50; text-decoration: underline; font-size: 1.1em;">
-              Visit github.com/${username}
+            <a href="https://github.com/${username}" target="_blank" style="display: inline-block; padding: 0.8em 1.5em; background: #2c3e50; color: white; text-decoration: none; border-radius: 6px; margin-top: 0.5em;">
+              Visit GitHub Profile <i class="fa fa-external-link"></i>
             </a>
           </div>
         `;
