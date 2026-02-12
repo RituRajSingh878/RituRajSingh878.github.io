@@ -19,80 +19,134 @@ layout: default
 </div>
 
 <div class="wrapper">
-<ul class="post-list">
-  {% for post in paginator.posts %}
-  {% if post.news == false %}
-  <li>
-   {% if post.link %}
-    <h2> 
-	<a class="post-link" href="{{ post.link}}">{{ post.title }}</a>
-	</h2>
-   {% else %}	
-    <h2>
-	  <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-    </h2>
-	{% endif %}
-    <section class="post-excerpt" itemprop="description">
-      <p>{{ post.content | strip_html | truncatewords: 50 }}</p>
-    </section>
-    <section class="post-meta">
-      <div class="post-date"><i class="fa fa-calendar"></i> {{ post.date | date: "%B %-d, %Y" }}</div>
-      <div class="post-categories">
-      {% if post.categories.size > 0 %}in {% for cat in post.categories %}
-        {% if site.jekyll-archives %}
-        <a href="{{ site.baseurl }}/category/{{ cat }}">{{ cat | capitalize }}</a>{% if forloop.last == false %}, {% endif %}
-        {% else %}
-        <a href="{{ site.baseurl }}/posts/#{{ cat }}">{{ cat | capitalize }}</a>{% if forloop.last == false %}, {% endif %}
-        {% endif %}
-      {% endfor %}{% endif %}
-      </div>
-    </section>
-  </li>
-  {% if forloop.last == false %}<hr>{% endif %}
-  {% endif %}
-  {% endfor %}
-</ul>
+  <!-- Personal Introduction Section -->
+  <div class="home-intro" style="text-align: center; margin: 3em 0; padding: 2.5em; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.15); color: white;">
+    <h2 style="color: white; margin-bottom: 1em; font-size: 2em;">Welcome!</h2>
+    <p style="font-size: 1.2em; line-height: 1.8; margin-bottom: 1em; opacity: 0.95;">
+      I'm <strong>Ritu Raj Singh</strong>, a Data Engineer at <strong>Citrix</strong> and a graduate from <strong>IIT (BHU) Varanasi</strong>.
+    </p>
+    <p style="font-size: 1.1em; line-height: 1.8; opacity: 0.9;">
+      I'm passionate about <strong>Machine Learning</strong>, <strong>Open Source</strong> development, and building innovative solutions. 
+      I love attending Hackathons, Conferences, and exploring new technologies.
+    </p>
+  </div>
 
-<nav class="pagination" role="navigation">
-  <p>
-    {% if paginator.previous_page %}
-      {% if paginator.page == 2 %}
-      <a class="newer-posts" href="{% if site.baseurl %}{{ site.baseurl }}{% endif %}/">
-        <span class="fa-stack fa-lg">
-          <i class="fa fa-square fa-stack-2x"></i>
-          <i class="fa fa-angle-double-left fa-stack-1x fa-inverse"></i>
-        </span>
+  <!-- Quick Links Section -->
+  <div class="home-sections" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2em; margin: 3em 0;">
+    
+    <div class="home-card" style="padding: 2em; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: all 0.3s ease; text-align: center;">
+      <div style="font-size: 3em; color: #2980b9; margin-bottom: 1em;">
+        <i class="fa fa-user"></i>
+      </div>
+      <h3 style="color: #2980b9; margin-bottom: 1em;">About Me</h3>
+      <p style="color: #666; margin-bottom: 1.5em; line-height: 1.6;">
+        Learn more about my background, experience, and interests.
+      </p>
+      <a href="{{ site.baseurl }}/about/" style="display: inline-block; padding: 0.8em 2em; background: #2980b9; color: white; text-decoration: none; border-radius: 6px; transition: all 0.3s ease;">
+        Read More <i class="fa fa-arrow-right"></i>
       </a>
-      {% else %}
-      <a class="newer-posts" href="{{ site.baseurl }}/page{{paginator.previous_page}}">
-        <span class="fa-stack fa-lg">
-          <i class="fa fa-square fa-stack-2x"></i>
-          <i class="fa fa-angle-double-left fa-stack-1x fa-inverse"></i>
-        </span>
+    </div>
+
+    <div class="home-card" style="padding: 2em; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: all 0.3s ease; text-align: center;">
+      <div style="font-size: 3em; color: #2980b9; margin-bottom: 1em;">
+        <i class="fa fa-book"></i>
+      </div>
+      <h3 style="color: #2980b9; margin-bottom: 1em;">Articles</h3>
+      <p style="color: #666; margin-bottom: 1.5em; line-height: 1.6;">
+        Read my latest blog posts and articles on technology, open source, and more.
+      </p>
+      <a href="{{ site.baseurl }}/articles/" style="display: inline-block; padding: 0.8em 2em; background: #2980b9; color: white; text-decoration: none; border-radius: 6px; transition: all 0.3s ease;">
+        View Articles <i class="fa fa-arrow-right"></i>
       </a>
-      {% endif %}
-    {% else %}
-    <span class="fa-stack fa-lg">
-      <i class="fa fa-square fa-stack-2x"></i>
-      <i class="fa fa-angle-double-left fa-stack-1x fa-inverse"></i>
-    </span>
-    {% endif %}
-    <span class="page-number">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
-    {% if paginator.next_page %}
-    <a class="newer-posts" href="{{ site.baseurl }}/page{{paginator.next_page}}">
-      <span class="fa-stack fa-lg">
-        <i class="fa fa-square fa-stack-2x"></i>
-        <i class="fa fa-angle-double-right fa-stack-1x fa-inverse"></i>
-      </span>
-    </a>
-    {% else %}
-    <span class="fa-stack fa-lg">
-      <i class="fa fa-square fa-stack-2x"></i>
-      <i class="fa fa-angle-double-right fa-stack-1x fa-inverse"></i>
-    </span>
-    {% endif %}
-  </p>
-</nav>
+    </div>
+
+    <div class="home-card" style="padding: 2em; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: all 0.3s ease; text-align: center;">
+      <div style="font-size: 3em; color: #2980b9; margin-bottom: 1em;">
+        <i class="fa fa-code"></i>
+      </div>
+      <h3 style="color: #2980b9; margin-bottom: 1em;">Projects</h3>
+      <p style="color: #666; margin-bottom: 1.5em; line-height: 1.6;">
+        Explore my open source projects and contributions.
+      </p>
+      <a href="{{ site.baseurl }}/projects/" style="display: inline-block; padding: 0.8em 2em; background: #2980b9; color: white; text-decoration: none; border-radius: 6px; transition: all 0.3s ease;">
+        View Projects <i class="fa fa-arrow-right"></i>
+      </a>
+    </div>
+
+    <div class="home-card" style="padding: 2em; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: all 0.3s ease; text-align: center;">
+      <div style="font-size: 3em; color: #2980b9; margin-bottom: 1em;">
+        <i class="fa fa-file-pdf-o"></i>
+      </div>
+      <h3 style="color: #2980b9; margin-bottom: 1em;">Resume</h3>
+      <p style="color: #666; margin-bottom: 1.5em; line-height: 1.6;">
+        Download or view my resume and educational background.
+      </p>
+      <a href="{{ site.baseurl }}/resume/" style="display: inline-block; padding: 0.8em 2em; background: #2980b9; color: white; text-decoration: none; border-radius: 6px; transition: all 0.3s ease;">
+        View Resume <i class="fa fa-arrow-right"></i>
+      </a>
+    </div>
+
+  </div>
+
+  <!-- Latest News Section -->
+  <div style="margin: 3em 0;">
+    <h2 style="text-align: center; color: #2980b9; margin-bottom: 2em;">
+      <i class="fa fa-newspaper-o"></i> Latest News
+    </h2>
+    <div class="news-preview" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5em;">
+      {% for post in site.posts limit:3 %}
+        {% if post.news %}
+        <div style="padding: 1.5em; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #2980b9;">
+          <div style="color: #2980b9; font-size: 0.9em; margin-bottom: 0.5em;">
+            <i class="fa fa-calendar"></i> {{ post.date | date:"%B %Y" }}
+          </div>
+          <h4 style="color: #333; margin: 0.5em 0;">{{ post.title }}</h4>
+        </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div style="text-align: center; margin-top: 2em;">
+      <a href="{{ site.baseurl }}/about/#latest-news" style="color: #2980b9; text-decoration: none; font-weight: bold;">
+        View All News <i class="fa fa-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- GitHub Profile Section -->
+  {% include github-profile.html %}
+
+  <!-- Recent Articles Preview -->
+  <div style="margin: 3em 0;">
+    <h2 style="text-align: center; color: #2980b9; margin-bottom: 2em;">
+      <i class="fa fa-book"></i> Recent Articles
+    </h2>
+    <div class="articles-preview">
+      {% assign recent_posts = site.posts | where: "news", false | limit: 3 %}
+      {% for post in recent_posts %}
+      <div style="padding: 1.5em; margin-bottom: 1.5em; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: all 0.3s ease;">
+        <h3 style="margin-top: 0; color: #2980b9;">
+          <a href="{{ post.url | prepend: site.baseurl }}" style="color: #2980b9; text-decoration: none;">
+            {{ post.title }}
+          </a>
+        </h3>
+        <div style="color: #888; font-size: 0.9em; margin-bottom: 1em;">
+          <i class="fa fa-calendar"></i> {{ post.date | date: "%B %-d, %Y" }}
+        </div>
+        <p style="color: #666; line-height: 1.6;">
+          {{ post.content | strip_html | truncatewords: 30 }}
+        </p>
+        <a href="{{ post.url | prepend: site.baseurl }}" style="color: #2980b9; text-decoration: none; font-weight: bold;">
+          Read More <i class="fa fa-arrow-right"></i>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+    <div style="text-align: center; margin-top: 2em;">
+      <a href="{{ site.baseurl }}/articles/" style="display: inline-block; padding: 0.8em 2em; background: #2980b9; color: white; text-decoration: none; border-radius: 6px; transition: all 0.3s ease;">
+        View All Articles <i class="fa fa-arrow-right"></i>
+      </a>
+    </div>
+  </div>
 
 </div>
 </div>

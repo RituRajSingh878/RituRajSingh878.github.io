@@ -733,3 +733,413 @@ a:hover {
     margin: 2% 0;
   }
 }
+
+/* ============================================
+   HOME PAGE ENHANCEMENTS
+   ============================================ */
+
+.home-card {
+  transition: all 0.3s ease;
+}
+
+.home-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+.home-card a {
+  transition: all 0.3s ease;
+}
+
+.home-card a:hover {
+  background: #3498db !important;
+  transform: translateX(5px);
+}
+
+.articles-preview > div {
+  transition: all 0.3s ease;
+}
+
+.articles-preview > div:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+.news-preview > div {
+  transition: all 0.3s ease;
+}
+
+.news-preview > div:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* ============================================
+   GITHUB PROFILE SECTION
+   ============================================ */
+
+.github-profile-section a {
+  transition: all 0.3s ease;
+}
+
+.github-profile-section a:hover {
+  background: rgba(255,255,255,0.3) !important;
+  transform: translateY(-2px);
+}
+
+.github-profile-section [style*="background: rgba(255,255,255,0.1)"] {
+  transition: all 0.3s ease;
+}
+
+.github-profile-section [style*="background: rgba(255,255,255,0.1)"]:hover {
+  background: rgba(255,255,255,0.15) !important;
+  transform: translateY(-3px);
+}
+
+@media screen and (max-width: 768px) {
+  .github-profile-section {
+    padding: 1.5em !important;
+  }
+  
+  .github-profile-section #github-profile {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1em !important;
+  }
+}
+
+/* ============================================
+   PROFESSIONAL PAGE HEADERS
+   ============================================ */
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.page-header-section {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.page-header-icon {
+  transition: transform 0.3s ease;
+}
+
+.page-header-icon:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.page-header-title {
+  background: linear-gradient(135deg, #2980b9 0%, #3498db 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.page-header-subtitle {
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+.page-header-divider {
+  animation: fadeInUp 0.8s ease-out 0.6s both;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header-divider::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.5), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* ============================================
+   JOURNEY TIMELINE (PATH STYLE)
+   ============================================ */
+
+.journey-container {
+  position: relative;
+  padding: 3em 0;
+}
+
+.journey-path {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2em 0;
+}
+
+.journey-path::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, 
+    #2980b9 0%,
+    #3498db 25%,
+    #5dade2 50%,
+    #3498db 75%,
+    #2980b9 100%
+  );
+  transform: translateX(-50%);
+  border-radius: 2px;
+  animation: pathDraw 2s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes pathDraw {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  100% {
+    height: 100%;
+    opacity: 1;
+  }
+}
+
+.journey-step {
+  position: relative;
+  margin: 3em 0;
+  opacity: 0;
+  animation: journeyFadeIn 0.8s ease-out forwards;
+}
+
+.journey-step:nth-child(1) { animation-delay: 0.2s; }
+.journey-step:nth-child(2) { animation-delay: 0.4s; }
+.journey-step:nth-child(3) { animation-delay: 0.6s; }
+.journey-step:nth-child(4) { animation-delay: 0.8s; }
+.journey-step:nth-child(5) { animation-delay: 1.0s; }
+.journey-step:nth-child(6) { animation-delay: 1.2s; }
+.journey-step:nth-child(7) { animation-delay: 1.4s; }
+
+@keyframes journeyFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.journey-step:nth-child(odd) {
+  padding-right: 50%;
+  text-align: right;
+}
+
+.journey-step:nth-child(even) {
+  padding-left: 50%;
+  text-align: left;
+}
+
+.journey-marker {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.journey-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #2980b9 0%, #3498db 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5em;
+  box-shadow: 0 4px 15px rgba(41, 128, 185, 0.4);
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s ease;
+  border: 4px solid white;
+}
+
+.journey-step:hover .journey-icon {
+  transform: translateX(-50%) scale(1.15);
+  box-shadow: 0 6px 20px rgba(41, 128, 185, 0.6);
+}
+
+.journey-step-active .journey-icon {
+  background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba(39, 174, 96, 0.4);
+  }
+  50% {
+    box-shadow: 0 4px 25px rgba(39, 174, 96, 0.8);
+  }
+}
+
+.journey-pulse {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(41, 128, 185, 0.3);
+  animation: ripple 2s infinite;
+  z-index: 1;
+}
+
+.journey-step-active .journey-pulse {
+  background: rgba(39, 174, 96, 0.3);
+}
+
+@keyframes ripple {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0;
+  }
+}
+
+.journey-content {
+  background: white;
+  padding: 1.5em;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.journey-step:hover .journey-content {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.journey-step:nth-child(odd) .journey-content::after {
+  content: '';
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid white;
+}
+
+.journey-step:nth-child(even) .journey-content::after {
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid white;
+}
+
+.journey-year {
+  font-size: 0.9em;
+  color: #2980b9;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.journey-step-active .journey-year {
+  color: #27ae60;
+}
+
+.journey-title {
+  font-size: 1.3em;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5em;
+}
+
+.journey-subtitle {
+  font-size: 1em;
+  color: #666;
+  margin-bottom: 1em;
+  line-height: 1.5;
+}
+
+.journey-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  font-size: 0.9em;
+  color: #888;
+}
+
+.journey-details span {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+}
+
+.journey-details i {
+  color: #2980b9;
+}
+
+/* Mobile Responsive Journey */
+@media screen and (max-width: 768px) {
+  .journey-path::before {
+    left: 30px;
+  }
+  
+  .journey-step {
+    padding-left: 80px !important;
+    padding-right: 0 !important;
+    text-align: left !important;
+  }
+  
+  .journey-marker {
+    left: 30px !important;
+  }
+  
+  .journey-step:nth-child(odd) .journey-content::after,
+  .journey-step:nth-child(even) .journey-content::after {
+    left: -10px;
+    right: auto;
+    border-right: 10px solid white;
+    border-left: none;
+  }
+  
+  .page-header-title {
+    font-size: 2em !important;
+  }
+  
+  .page-header-icon {
+    font-size: 3em !important;
+  }
+}

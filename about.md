@@ -15,6 +15,9 @@ permalink: /about/
   </p>
 </div>
 
+<!-- Journey Timeline -->
+{% include journey-timeline.html %}
+
 <br>
 
 <h2 style="text-align: center; color: #2980b9; margin: 2em 0;">
