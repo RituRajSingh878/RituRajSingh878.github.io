@@ -8,10 +8,10 @@ permalink: /about/
 <div class="about-intro" style="text-align: center; margin: 2em 0; padding: 2em; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
   <h2 style="color: #2980b9; margin-bottom: 1em;">Hi, I'm Ritu Raj Singh</h2>
   <p style="font-size: 1.1em; line-height: 1.8; color: #555;">
-    I'm a Data Engineer at <strong>Citrix</strong> and a graduate from <strong>Indian Institute of Technology (BHU) Varanasi</strong> with a degree in Mathematics and Computing (Integrated Dual Degree).
+    I'm a <strong>Software Engineer II at Fortanix</strong> specializing in secure GenAI systems, RAG pipelines, and LLM fine-tuning. I'm a graduate from <strong>Indian Institute of Technology (BHU) Varanasi</strong> with a degree in Mathematics and Computing (Integrated Dual Degree).
   </p>
   <p style="font-size: 1.1em; line-height: 1.8; color: #555;">
-    I am an active <strong>Open Source contributor</strong> passionate about machine learning. Apart from coding, I love going to Hackathons, attending Conferences, and Travelling.
+    I build production-grade AI systems with a focus on <strong>Large Language Models</strong>, <strong>Retrieval-Augmented Generation</strong>, and <strong>secure inference</strong>. I'm an active <strong>Open Source contributor</strong> passionate about machine learning and AI research. Apart from coding, I love going to Hackathons, attending Conferences, and Travelling.
   </p>
 </div>
 
