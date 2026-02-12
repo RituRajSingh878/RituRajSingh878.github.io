@@ -20,7 +20,7 @@ permalink: /about/
 
 <br>
 
-<h2 style="text-align: center; color: #2980b9; margin: 2em 0;">
+<h2 id="latest-news" style="text-align: center; color: #2980b9; margin: 2em 0;">
   <i class="fa fa-newspaper-o"></i> Latest News & Updates
 </h2>
 

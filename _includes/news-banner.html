@@ -6,7 +6,7 @@
   
   <div class="news-banner-container">
     <div class="news-banner-wrapper" id="news-banner-wrapper">
-      {% assign news_posts = site.posts | where: "news", true | limit: 10 %}
+      {% assign news_posts = site.posts | where: "news", true | limit: 3 %}
       {% if news_posts.size > 0 %}
       {% for post in news_posts %}
       <div class="news-slide">
@@ -48,6 +48,12 @@
       <button class="news-nav-btn news-next" id="news-next">
         <i class="fa fa-chevron-right"></i>
       </button>
+    </div>
+    
+    <div class="news-banner-footer" style="text-align: center; margin-top: 2em; padding-top: 1.5em; border-top: 1px solid #e9ecef;">
+      <a href="{{ site.baseurl }}/about/#latest-news" class="btn btn-outline" style="display: inline-flex; align-items: center; gap: 0.5em;">
+        View More News <i class="fa fa-arrow-right"></i>
+      </a>
     </div>
   </div>
 </div>
