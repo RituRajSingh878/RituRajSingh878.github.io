@@ -7,7 +7,7 @@
   const SECTION_DELAY = 400; // Delay before starting next section (ms)
 
   // Initialize animations when DOM is ready
-  document.addEventListener('DOMContentLoaded', function() {
+  function initAnimations() {
     // Add initial hidden state styles
     const style = document.createElement('style');
     style.id = 'sequential-animations-style';
@@ -33,13 +33,22 @@
         transform: translateY(0) !important;
       }
     `;
-    document.head.appendChild(style);
+    if (!document.getElementById('sequential-animations-style')) {
+      document.head.appendChild(style);
+    }
 
-    // Small delay to ensure DOM is fully ready
+    // Wait a bit longer to ensure all includes are loaded
     setTimeout(() => {
       animateSectionsSequentially();
-    }, 100);
-  });
+    }, 300);
+  }
+
+  // Run when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAnimations);
+  } else {
+    initAnimations();
+  }
 
   function animateSectionsSequentially() {
     const sections = document.querySelectorAll('.section');
@@ -79,6 +88,12 @@
 
   function getSectionItems(section) {
     const items = [];
+    
+    // GitHub contributions chart
+    const contributionsChart = section.querySelector('.github-contributions.section-item');
+    if (contributionsChart) {
+      items.push(contributionsChart);
+    }
     
     // About cards
     const aboutCards = section.querySelectorAll('.about-card.section-item');

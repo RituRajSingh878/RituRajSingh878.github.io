@@ -13,12 +13,16 @@
     <div style="background: #f8f9fa; padding: 2em; border-radius: 8px; border: 1px solid #e9ecef; overflow-x: auto;">
       <!-- GitHub Contributions Calendar (Green Squares Table) -->
       <div style="display: inline-block; background: white; padding: 1.5em; border-radius: 4px; width: 100%; max-width: 900px;">
-        <div id="contributions-chart-container" style="width: 100%; min-height: 200px; display: flex; align-items: center; justify-content: center;">
+        <div id="contributions-chart-container" style="width: 100%; min-height: 200px; display: flex; align-items: center; justify-content: center; position: relative;">
+          <div id="chart-loading" style="position: absolute; text-align: center; color: #999;">
+            <i class="fa fa-spinner fa-spin" style="font-size: 2em; margin-bottom: 0.5em;"></i>
+            <p>Loading contributions chart...</p>
+          </div>
           <img 
             id="github-contributions-chart"
             src="" 
             alt="GitHub Contributions Chart"
-            style="width: 100%; height: auto; display: block; min-width: 700px; max-width: 100%;"
+            style="width: 100%; height: auto; display: none; min-width: 700px; max-width: 100%;"
           />
         </div>
         <p style="margin-top: 1em; font-size: 0.85em; color: #999;">
@@ -32,50 +36,67 @@
   
   <script>
   (function() {
-    // Load contributions chart
-    const username = '{{ site.github_username }}'.trim();
-    if (username) {
+    function loadContributionsChart() {
+      // Load contributions chart
+      const username = '{{ site.github_username }}'.trim();
+      if (!username || username === '') {
+        return;
+      }
+      
       const chartImg = document.getElementById('github-contributions-chart');
       const container = document.getElementById('contributions-chart-container');
       
-      if (chartImg && container) {
-        // Try multiple chart services
-        const chartServices = [
-          `https://ghchart.rshah.org/${username}`,
-          `https://github-readme-activity-graph.vercel.app/graph?username=${username}&theme=github`,
-          `https://github-contributions-api.deno.dev/${username}.svg`
-        ];
-        
-        let currentService = 0;
-        
-        function tryNextService() {
-          if (currentService < chartServices.length) {
-            chartImg.src = chartServices[currentService];
-            chartImg.onerror = function() {
-              currentService++;
-              if (currentService < chartServices.length) {
-                tryNextService();
-              } else {
-                // All services failed, show fallback
-                container.innerHTML = `
-                  <div style="text-align: center; padding: 2em;">
-                    <p style="color: #666; margin-bottom: 1em;">Unable to load contributions chart.</p>
-                    <a href="https://github.com/${username}" target="_blank" style="display: inline-block; padding: 0.8em 1.5em; background: #2c3e50; color: white; text-decoration: none; border-radius: 6px;">
-                      View on GitHub
-                    </a>
-                  </div>
-                `;
-              }
-            };
-            chartImg.onload = function() {
-              // Successfully loaded
-              chartImg.style.display = 'block';
-            };
-          }
-        }
-        
-        tryNextService();
+      if (!chartImg || !container) {
+        return;
       }
+      
+      // Try multiple chart services
+      const chartServices = [
+        `https://ghchart.rshah.org/${username}`,
+        `https://github-readme-activity-graph.vercel.app/graph?username=${username}&theme=github`,
+        `https://github-contributions-api.deno.dev/${username}.svg`
+      ];
+      
+      let currentService = 0;
+      
+      function tryNextService() {
+        if (currentService < chartServices.length) {
+          chartImg.src = chartServices[currentService];
+          chartImg.onerror = function() {
+            currentService++;
+            if (currentService < chartServices.length) {
+              tryNextService();
+            } else {
+              // All services failed, show fallback
+              const loading = document.getElementById('chart-loading');
+              if (loading) loading.style.display = 'none';
+              container.innerHTML = `
+                <div style="text-align: center; padding: 2em;">
+                  <p style="color: #666; margin-bottom: 1em;">Unable to load contributions chart.</p>
+                  <a href="https://github.com/${username}" target="_blank" style="display: inline-block; padding: 0.8em 1.5em; background: #2c3e50; color: white; text-decoration: none; border-radius: 6px;">
+                    View on GitHub
+                  </a>
+                </div>
+              `;
+            }
+          };
+          chartImg.onload = function() {
+            chartImg.style.display = 'block';
+            const loading = document.getElementById('chart-loading');
+            if (loading) loading.style.display = 'none';
+          };
+        }
+      }
+      
+      tryNextService();
+    }
+    
+    // Wait for DOM to be ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', loadContributionsChart);
+    } else {
+      // DOM already ready, but wait a bit for includes to render
+      setTimeout(loadContributionsChart, 100);
     }
   })();
   </script>
