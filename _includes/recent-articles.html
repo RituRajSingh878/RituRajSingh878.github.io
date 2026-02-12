@@ -1,0 +1,61 @@
+<div class="recent-articles-section section">
+  <div class="section-header section-item">
+    <span class="section-label">Blog</span>
+    <h2 class="section-title">Recent Articles</h2>
+    <p class="section-description">
+      Latest insights, tutorials, and thoughts on technology, AI, and open source
+    </p>
+  </div>
+  
+  <div class="articles-grid">
+    {% assign recent_articles = site.posts | where: "news", false | limit: 3 %}
+    {% if recent_articles.size > 0 %}
+      {% for post in recent_articles %}
+      <article class="article-card section-item" style="opacity: 1 !important; transform: none !important;">
+        <div class="article-card-content">
+          <div class="article-meta">
+            <span class="article-date">
+              <i class="fa fa-calendar"></i>
+              {{ post.date | date: "%B %d, %Y" }}
+            </span>
+            {% if post.categories.size > 0 %}
+            <span class="article-category">
+              <i class="fa fa-folder"></i>
+              {{ post.categories | first | capitalize }}
+            </span>
+            {% endif %}
+          </div>
+          <h3 class="article-title">
+            {% if post.link %}
+              <a href="{{ post.link }}" target="_blank">{{ post.title }}</a>
+            {% else %}
+              <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+            {% endif %}
+          </h3>
+          {% if post.excerpt %}
+          <p class="article-excerpt">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+          {% else %}
+          <p class="article-excerpt">{{ post.content | strip_html | truncatewords: 30 }}</p>
+          {% endif %}
+          <a href="{% if post.link %}{{ post.link }}{% else %}{{ post.url | prepend: site.baseurl }}{% endif %}" 
+             class="article-read-more" 
+             {% if post.link %}target="_blank"{% endif %}>
+            Read More <i class="fa fa-arrow-right"></i>
+          </a>
+        </div>
+      </article>
+      {% endfor %}
+    {% else %}
+      <div class="no-articles" style="text-align: center; padding: 3em; color: #666;">
+        <p>No articles available at the moment.</p>
+      </div>
+    {% endif %}
+  </div>
+  
+  <div class="section-footer">
+    <a href="{{ site.baseurl }}/articles/" class="btn btn-outline">
+      View All Articles <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+</div>
+

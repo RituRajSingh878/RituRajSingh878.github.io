@@ -23,38 +23,77 @@ main_nav: true
     </div>
   </div>
 
-  <ul class="post-list">
+  <div class="articles-container">
     {% for post in site.posts %}
     {% if post.news == false %}
-    <li>
-     {% if post.link %}
-      <h2> 
-        <a class="post-link" href="{{ post.link}}">{{ post.title }}</a>
-      </h2>
-     {% else %}	
-      <h2>
-        <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-      </h2>
-      {% endif %}
-      <section class="post-excerpt" itemprop="description">
-        <p>{{ post.content | strip_html | truncatewords: 50 }}</p>
-      </section>
-      <section class="post-meta">
-        <div class="post-date"><i class="fa fa-calendar"></i> {{ post.date | date: "%B %-d, %Y" }}</div>
-        <div class="post-categories">
-        {% if post.categories.size > 0 %}in {% for cat in post.categories %}
-          {% if site.jekyll-archives %}
-          <a href="{{ site.baseurl }}/category/{{ cat }}">{{ cat | capitalize }}</a>{% if forloop.last == false %}, {% endif %}
-          {% else %}
-          <a href="{{ site.baseurl }}/posts/#{{ cat }}">{{ cat | capitalize }}</a>{% if forloop.last == false %}, {% endif %}
+    <article class="article-full">
+      <header class="article-header">
+        {% if post.link %}
+        <h2 class="article-title">
+          <a href="{{ post.link }}" target="_blank">{{ post.title }}</a>
+          <span class="external-link-icon"><i class="fa fa-external-link"></i></span>
+        </h2>
+        {% else %}
+        <h2 class="article-title">{{ post.title }}</h2>
+        {% endif %}
+        <div class="article-meta">
+          <span class="article-date">
+            <i class="fa fa-calendar"></i>
+            {{ post.date | date: "%B %-d, %Y" }}
+          </span>
+          {% if post.categories.size > 0 %}
+          <span class="article-categories">
+            <i class="fa fa-folder"></i>
+            {% for cat in post.categories %}
+              {% if site.jekyll-archives %}
+              <a href="{{ site.baseurl }}/category/{{ cat }}">{{ cat | capitalize }}</a>{% if forloop.last == false %}, {% endif %}
+              {% else %}
+              <a href="{{ site.baseurl }}/posts/#{{ cat }}">{{ cat | capitalize }}</a>{% if forloop.last == false %}, {% endif %}
+              {% endif %}
+            {% endfor %}
+          </span>
           {% endif %}
-        {% endfor %}{% endif %}
         </div>
-      </section>
-    </li>
-    {% if forloop.last == false %}<hr>{% endif %}
+      </header>
+      
+      <div class="article-content">
+        {% assign content_stripped = post.content | strip %}
+        {% if content_stripped != '' %}
+          {{ post.content }}
+        {% elsif post.excerpt %}
+          <p>{{ post.excerpt }}</p>
+          {% if post.link %}
+          <div style="margin-top: 1.5em; padding: 1em; background: #f8f9fa; border-left: 4px solid #2980b9; border-radius: 4px;">
+            <strong>Note:</strong> This article is hosted externally. Click the button below to read the full content.
+          </div>
+          {% endif %}
+        {% else %}
+          <div style="padding: 2em; background: #f8f9fa; border-radius: 8px; color: #666; text-align: center;">
+            {% if post.link %}
+              <p><i class="fa fa-external-link" style="font-size: 2em; margin-bottom: 0.5em; color: #2980b9;"></i></p>
+              <p>This article is available at an external link. Click below to read it.</p>
+            {% else %}
+              <p><i class="fa fa-file-text-o" style="font-size: 2em; margin-bottom: 0.5em; color: #999;"></i></p>
+              <p>No content available for this article.</p>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+      
+      {% if post.link %}
+      <div class="article-footer">
+        <a href="{{ post.link }}" target="_blank" class="btn btn-outline">
+          Read Full Article <i class="fa fa-external-link"></i>
+        </a>
+      </div>
+      {% endif %}
+    </article>
+    
+    {% unless forloop.last %}
+    <hr class="article-divider">
+    {% endunless %}
     {% endif %}
     {% endfor %}
-  </ul>
+  </div>
 </div>
 
